@@ -1,0 +1,33 @@
+
+.converter-body{
+    width: 400px;
+    height: 150px;
+    background-color: aqua;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    box-shadow: 0px 0px 2px 1px;
+}
+.converter-title{
+text-align: center;
+margin: 13px 0px;
+}
+
+input{
+    height: 25px;
+    text-align: center;
+}
+#input{
+    margin-left: 25px;
+}
+
+#inputType,#resultType{
+    width: 170.77px;
+    margin-left: 25px;
+    color: darkorchid;
+}
+
+#resultType{
+    margin-left: 12.5px;
+}
