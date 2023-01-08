@@ -4,84 +4,82 @@ let input = document.getElementById('input');
 let result = document.getElementById('result');
 let inputType = document.getElementById('inputType');
 let resultType = document.getElementById('resultType');
-let inputTypeValue,resultTypeValue;
+
 
 // add listener
-input.addEventListener("keyup", myResult);
-inputType.addEventListener("change",myResult);
-resultType.addEventListener("change",myResult);
+input.addEventListener("keyup", function(){ myResult(inputType.value, input.value,resultType.value )});
+inputType.addEventListener("change", function(){ myResult(inputType.value, input.value, resultType.value)});
+resultType.addEventListener("change", function(){ myResult(inputType.value, input.value, resultType.value)});
 
-inputTypeValue = inputType.value;
-resultTypeValue = resultType.value;
 
-function myResult() {
 
-inputTypeValue = inputType.value;
-resultTypeValue = resultType.value;
 
-if(inputTypeValue === 'meter' && resultTypeValue === 'kilometer') {
+function myResult(unit, value, convert) {
 
-    result.value = Number(input.value) * 0.001;
-}else if(inputTypeValue === 'meter' && resultTypeValue === 'centimeter') {
+
+
+if(unit === 'meter' && convert === 'inch') {
+
+    result.value = Number(value) * 39.370;
+}else if(unit === 'meter' && convert === 'centimeter') {
     
-    result.value = Number(input.value) * 100;
-}else if (inputTypeValue === 'meter' && resultTypeValue === 'feet') {
+    result.value = Number(value) * 100;
+}else if (unit === 'meter' && convert === 'feet') {
 
-    result.value = Number(input.value) * 3.28084
-}else if(inputTypeValue === 'meter' && resultTypeValue === 'meter') {
+    result.value = Number(value) * 3.28084
+}else if(unit === 'meter' && convert === 'meter') {
 
-    result.value = input.value;
+    result.value = value;
 }
 
-if(inputTypeValue === 'kilometer' && resultTypeValue === 'meter') {
+if(unit === 'inch' && convert === 'meter') {
 
-    result.value = Number(input.value) * 1000;
-} else if(inputTypeValue === 'kilometer' && resultTypeValue === 'centimeter'){
+    result.value = Number(value) / 39.370;
+} else if(unit === 'inch' && convert === 'centimeter'){
 
-    result.value = Number(input.value) * 100000;
+    result.value = Number(value) / 0.39370;
 
-}else if (inputTypeValue === 'kilometer' && resultTypeValue === 'feet') {
+}else if (unit === 'inch' && convert === 'feet') {
 
-    result.value = Number(input.value)  * 3280.8  
+    result.value = Number(value)  * 0.083333;
 
-} else if (inputTypeValue === 'kilometer' && resultTypeValue === 'kilometr') {
-    result.value = input.value;
+} else if (unit === 'inch' && convert === 'inch') {
+    result.value = value;
 }
 
-if(inputTypeValue === 'centimeter' && resultTypeValue === 'kilometer') {
+if(unit === 'centimeter' && convert === 'inch') {
 
-    result.value = Number(input.value) * 0.00001;
+    result.value = Number(value) * 0.39370;
 
-} else if(inputTypeValue === "centimeter" && resultTypeValue === 'meter') {
+} else if(unit === "centimeter" && convert === 'meter') {
 
-    result.value = Number(input.value) * 0.01;
+    result.value = Number(value) * 0.01;
 
-}else if (inputTypeValue === 'centimeter' && resultTypeValue === 'feet') {
+}else if (unit === 'centimeter' && convert === 'feet') {
 
-    result.value = Number(input.value)  * 0.032808 
+    result.value = Number(value)  * 0.032808 
 
-} else if(inputTypeValue === 'centimeter' && resultTypeValue ==='centimeter') {
-    result.value = input.value;
+} else if(unit === 'centimeter' && convert ==='centimeter') {
+    result.value = value;
 }
 
 
 
-if(inputTypeValue === 'feet' && resultTypeValue === 'kilometer') {
+if(unit === 'feet' && convert === 'inch') {
 
-    result.value = Number(input.value) * 0.00001;
+    result.value = Number(value) *12;
     
-} else if(inputTypeValue === "feet" && resultTypeValue === 'meter') {
+} else if(unit === "feet" && convert === 'meter') {
 
-    result.value = Number(input.value) * 0.01;
+    result.value = Number(value) * 0.01;
 
-}else if (inputTypeValue === 'feet' && resultTypeValue === 'centimeter') {
+}else if (unit === 'feet' && convert === 'centimeter') {
 
-    result.value = Number(input.value)  * 0.032808 
+    result.value = Number(value)  * 0.032808 
 
-} else if(inputTypeValue === 'feet' && resultTypeValue ==='feet') {
-    result.value = input.value;
+} else if(unit === 'feet' && convert ==='feet') {
+    result.value = value;
 }
-
 
 
 
