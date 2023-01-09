@@ -1,0 +1,7 @@
+{
+    "logic":{
+        "unit": "meter",
+        "value": "1",
+        "convert": "inch"
+    }
+}

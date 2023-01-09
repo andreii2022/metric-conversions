@@ -1,0 +1,19 @@
+{
+    "distance":[{
+        "unit": "yard",
+        "value": "/1.0936",
+        "convert": "meter"
+    },{
+        "unit": "yard",
+        "value": "/0.010936",
+        "convert": "centimeter"
+    },{
+        "unit": "yard",
+        "value": "*3",
+        "convert": "feet"
+    },{
+        "unit": "yard",
+        "value": "*36",
+        "convert": "inch"
+    }]
+}
