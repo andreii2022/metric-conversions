@@ -1,5 +1,5 @@
 function readJson () {
-    fetch('new_logic.json')
+    fetch('new_value.json')
     .then(response => {
         if (!response.ok) {
             throw new Error("HTTP error " + response.status);
@@ -7,12 +7,10 @@ function readJson () {
         return response.json();
     })
     .then(json => {
-        console.log(Calc(json.logic.unit, json.logic.value, json.logic.convert));
-        
-        document.getElementById('unitJson').innerHTML = json.logic.unit;
-        document.getElementById('valueJson').innerHTML = json.logic.value;
-        document.getElementById('convertJson').innerHTML = json.logic.convert;
-        document.getElementById('resultJson').innerHTML = Calc(json.logic.unit, json.logic.value, json.logic.convert);
+        document.getElementById('unitJson').innerHTML = json.distance.unit;
+        document.getElementById('valueJson').innerHTML = json.distance.value;
+        document.getElementById('convertJson').innerHTML = json.distance.convert;
+        document.getElementById('resultJson').innerHTML = Calc(json.distance.unit, json.distance.value, json.distance.convert)+json.distance.convert;
 
     })
     .catch(function (e) {
@@ -21,16 +19,45 @@ function readJson () {
 }
  readJson();
 
- let ArrayOptions = ["cm","km","feet"];
+ 
 
- let optionList = document.getElementById('inputType').options;
+ 
+async function newLogic () {
+    const response = await fetch('new_logic.json')
+    if (!response.ok) {
+		throw new Error(`HTTP error! status: ${response.status}`);
+	}
+	const data = await response.json();
+    return data;
+    
+}
+let dataJson;
 
+newLogic().then(data => {
+    let ArrayOptions = ["centimeter","feet","meter", "inch"];
 
- ArrayOptions.forEach(option =>
-  optionList.add(
-    new Option(option, option)
-  )
-);
+    const unique = data.logic.filter(element => {
+        const isDuplicate = ArrayOptions.includes(element.unit);
+        if (!isDuplicate) {
+            ArrayOptions.push(element.unit);
+      
+        }
+      });    
+
+    let optionList = document.getElementById('inputType').options;
+    let optionList2 = document.getElementById('resultType').options;
+   
+    ArrayOptions.forEach(option => {
+     optionList.add(
+       new Option(option, option)
+     );
+     optionList2.add(
+       new Option(option, option)
+     )
+    });
+    dataJson = data;
+});
+
 
 
 
@@ -45,6 +72,8 @@ input.addEventListener("keyup", function(){ myResult(inputType.value, input.valu
 inputType.addEventListener("change", function(){ myResult(inputType.value, input.value, resultType.value)});
 resultType.addEventListener("change", function(){ myResult(inputType.value, input.value, resultType.value)});
 
+document.getElementById('Download').addEventListener("click", function() { downloadJson()});
+
 function myResult (unit, value, convert) {
     result.value = Calc(unit, value, convert);
 }
@@ -52,73 +81,96 @@ function myResult (unit, value, convert) {
 
 
 function Calc(unit, value, convert) {
-    console.log(unit);
-    console.log(value);
-    console.log(convert)
+    
+        if(unit === 'meter' && convert === 'inch') {
 
-    if(unit === 'meter' && convert === 'inch') {
+            return Number(value) * 39.370;
+        }else if(unit === 'meter' && convert === 'centimeter') {
+            
+            return Number(value) * 100;
+        }else if (unit === 'meter' && convert === 'feet') {
 
-        return Number(value) * 39.370;
-    }else if(unit === 'meter' && convert === 'centimeter') {
+            return Number(value) * 3.28084
+        }else if(unit === 'meter' && convert === 'meter') {
+
+            return value;
+        }
+
+        if(unit === 'inch' && convert === 'meter') {
+
+            return Number(value) / 39.370;
+        } else if(unit === 'inch' && convert === 'centimeter'){
+
+            return Number(value) / 0.39370;
+
+        }else if (unit === 'inch' && convert === 'feet') {
+
+            return Number(value)  * 0.083333;
+
+        } else if (unit === 'inch' && convert === 'inch') {
+            return value;
+        }
+
+        if(unit === 'centimeter' && convert === 'inch') {
+
+            return Number(value) * 0.39370;
+
+        } else if(unit === "centimeter" && convert === 'meter') {
+
+            return Number(value) * 0.01;
+
+        }else if (unit === 'centimeter' && convert === 'feet') {
+
+            return Number(value)  * 0.032808 
+
+        } else if(unit === 'centimeter' && convert ==='centimeter') {
+            return value;
+        }
+
+
+
+        if(unit === 'feet' && convert === 'inch') {
+
+            return Number(value) *12;
+            
+        } else if(unit === "feet" && convert === 'meter') {
+
+            return Number(value) * 0.01;
+
+        }else if (unit === 'feet' && convert === 'centimeter') {
+
+            return Number(value)  * 0.032808 
+
+        } else if(unit === 'feet' && convert ==='feet') {
+            return value;
+            
+        }
         
-        return Number(value) * 100;
-    }else if (unit === 'meter' && convert === 'feet') {
-
-        return Number(value) * 3.28084
-    }else if(unit === 'meter' && convert === 'meter') {
-
-        return value;
-    }
-
-    if(unit === 'inch' && convert === 'meter') {
-
-        return Number(value) / 39.370;
-    } else if(unit === 'inch' && convert === 'centimeter'){
-
-        return Number(value) / 0.39370;
-
-    }else if (unit === 'inch' && convert === 'feet') {
-
-        return Number(value)  * 0.083333;
-
-    } else if (unit === 'inch' && convert === 'inch') {
-        return value;
-    }
-
-    if(unit === 'centimeter' && convert === 'inch') {
-
-        return Number(value) * 0.39370;
-
-    } else if(unit === "centimeter" && convert === 'meter') {
-
-        return Number(value) * 0.01;
-
-    }else if (unit === 'centimeter' && convert === 'feet') {
-
-        return Number(value)  * 0.032808 
-
-    } else if(unit === 'centimeter' && convert ==='centimeter') {
-        return value;
-    }
-
-
-
-    if(unit === 'feet' && convert === 'inch') {
-
-        return Number(value) *12;
+        for(let i =0; i<=dataJson.logic.length; i++){
         
-    } else if(unit === "feet" && convert === 'meter') {
-
-        return Number(value) * 0.01;
-
-    }else if (unit === 'feet' && convert === 'centimeter') {
-
-        return Number(value)  * 0.032808 
-
-    } else if(unit === 'feet' && convert ==='feet') {
-        return value;
-    }
+            if(unit === dataJson.logic[i].unit && convert === dataJson.logic[i].convert){
+                return eval(Number(value) + dataJson.logic[i].value)
+            }
+        }
 }
+
+  function download(content, fileName, contentType) {
+    const a = document.createElement("a");
+    const file = new Blob([content], { type: contentType });
+    a.href = URL.createObjectURL(file);
+    a.download = fileName;
+    a.click();
+  }
+
+function downloadJson(){
+    download(JSON.stringify({value: input.value,convertFrom: inputType.value, convertTo: resultType.value, result: result.value}), "result.json", "text/plain");
+}
+
+
+
+
+
+
 
 
 
