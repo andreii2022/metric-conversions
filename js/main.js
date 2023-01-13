@@ -19,9 +19,8 @@ function readJson () {
 }
  readJson();
 
- 
 
- 
+
 async function newLogic () {
     const response = await fetch('new_logic.json')
     if (!response.ok) {
@@ -146,7 +145,7 @@ function Calc(unit, value, convert) {
             
         }
         
-        for(let i =0; i<=dataJson.logic.length; i++){
+        for(let i = 0; i<=dataJson.logic.length; i++){
         
             if(unit === dataJson.logic[i].unit && convert === dataJson.logic[i].convert){
                 return eval(Number(value) + dataJson.logic[i].value)
@@ -168,104 +167,27 @@ function downloadJson(){
 
 
 
+myJson={"data": [{"user": "mike@mail.com", "rating": 20, "disabled": false},
+{"user": "greg@mail.com", "rating": 14, "disabled": false},
+{"user": "john@mail.com", "rating": 25, "disabled": true}],
+"condition": {"include": [{"disabled": true}], "sort_by": ["rating"]}}
+
+let filterBy = Object.keys(myJson.condition)[0]
 
 
 
+function sort (filtrBy, filter, sortBy) {
+        let filterValue = Object.keys(myJson.condition[filtrBy][0])[0]
 
 
+    if(filtrBy === 'exclude') {
+        return myJson.data.filter((e) => e[filterValue] !== filter[0][filterValue] ).sort((a, b) => {return a[sortBy[0]] - b[sortBy[0]];});
+        
+    } else {
+        return myJson.data.filter((e) => e[filterValue] === filter[0][filterValue] ).sort((a, b) => {return a[sortBy[0]] - b[sortBy[0]];});
+        
+    }
 
-// let array = [1,2,3,4,5,6,7];
-// let count = 0;
-// function linearSearch(array, item) {
-//     count += 1;
-//     for(let i = 0; i < array.length; i++ ) {
-//         if(array[i] === item) {
-//             return i;
-//         }
-//     }
-//     return null;
-// }
-// console.log(linearSearch(array, 2))
-// console.log('caunt =', count);
-
-
-
-
-
-// const array =[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
-// let  caunt = 0;
-
-// function binarySearch(array,item) {
-//     let start = 0;
-//     let end = array.length;
-//     let midle;
-//     let found = false;
-//     let position = -1;
-
-//     while (found === false && start <= end) {
-//         count +=1;
-//         midle = Math.floor((start + end) / 2);
-//         if(array[midle] === item) {
-//             found = true
-//             position = midle;
-//             return position;
-//         }
-//         if(array < array[midle]) {
-//             end = midle -1;
-//         } else {
-//             start = midle + 1;
-//         }
-//     }
-//     return position;
-// }
-
-
-
-
-
-
-
-
-
-
-// const array = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
-// let count = 0
-
-// function binarySearch(array, item) {
-//     let start = 0
-//     let end = array.length
-//     let middle;
-//     let found = false
-//     let position = -1
-//     while (found === false && start <= end) {
-//         count+=1
-//         middle = Math.floor((start + end) / 2);
-//         if (array[middle] === item) {
-//             found = true
-//             position = middle
-//             return position;
-//         }
-//         if (item < array[middle]) {
-//             end = middle - 1
-//         } else {
-//             start = middle + 1
-//         }
-//     }
-//     return position;
-// }
-
-// function recursiveBinarySearch(array, item, start, end) {
-//     let middle = Math.floor((start + end) / 2);
-//     count += 1
-//     if (item === array[middle]) {
-//         return middle
-//     }
-//     if (item < array[middle]) {
-//         return recursiveBinarySearch(array, item, 0, middle - 1 )
-//     } else {
-//         return recursiveBinarySearch(array, item, middle + 1, end )
-//     }
-// }
-
-// console.log(recursiveBinarySearch(array, 0, 0, array.length))
-// console.log(count)
+}
+ let result2 =  sort(filterBy, myJson.condition[filterBy], myJson.condition.sort_by)
+ console.log(result2)

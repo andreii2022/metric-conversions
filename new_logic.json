@@ -2,7 +2,7 @@
 {
     "logic":[{
         "unit": "yard",
-        "value": "/1.0936",
+        "value": "/1093.6",
         "convert": "kilometr"
     },{
         "unit": "yard",
@@ -10,61 +10,209 @@
         "convert": "mm"
     },{
         "unit": "yard",
-        "value": "*914,4",
+        "value": "*3",
         "convert": "feet"
     },{
         "unit": "yard",
-        "value": "*914,4",
+        "value": "*36",
         "convert": "inch"
     },{
         "unit": "yard",
-        "value": "*914,4",
+        "value": "/0.010936",
         "convert": "centemeter"
     },{
         "unit": "yard",
-        "value": "*914,4",
+        "value": "/1.0936",
         "convert": "meter"
     },{
         "unit": "yard",
-        "value": "*914,4",
+        "value": "*1",
         "convert": "yard"
-        ///////////////////
+        
+
+
     },{
         "unit": "mm",
-        "value": "*914,4",
+        "value": "/10",
         "convert": "centimeter"
     },{
         "unit": "mm",
-        "value": "*914,4",
+        "value": "/100",
         "convert": "meter"
     },{
         "unit": "mm",
-        "value": "*1",
+        "value": "/ 1e+6",
         "convert": "kilometer"
     },{
         "unit": "mm",
-        "value": "*36",
+        "value": "/ 914,4",
         "convert": "yard"
     },{
         "unit": "mm",
         "value": "*36",
-        "convert": "feet"
+        "convert": "/ 304,8"
     },{
         "unit": "mm",
-        "value": "*1093.6",
+        "value": "/ 25,4",
         "convert": "inch"
     },{
         "unit": "mm",
-        "value": "*1000000",
+        "value": "*1",
         "convert": "mm"
-        ///////////////////
+        
+
+
+    },{
+        "unit": "kilometer",
+        "value": "*1e+6",
+        "convert": "mm"
+    },{
+        "unit": "kilometer",
+        "value": "*100000",
+        "convert": "centemeter"
+    },{
+        "unit": "kilometer",
+        "value": "*1000",
+        "convert": "meter"
+    },{
+        "unit": "kilometer",
+        "value": "*1",
+        "convert": "kilometer"
     },{
         "unit": "kilometer",
         "value": "*1094",
         "convert": "yard"
     },{
         "unit": "kilometer",
-        "value": "*36",
+        "value": "*3281",
+        "convert": "feet"
+    },{
+        "unit": "kilometer",
+        "value": "*39370",
+        "convert": "inch"
+        
+
+
+    },{
+        "unit": "centemeter",
+        "value": "*10",
+        "convert": "mm"
+    },{
+        "unit": "centemeter",
+        "value": "*1",
+        "convert": "centemeter"
+    },{
+        "unit": "centemeter",
+        "value": "/100",
+        "convert": "meter"
+    },{
+        "unit": "centemeter",
+        "value": "/100000",
         "convert": "kilometer"
+    },{
+        "unit": "centemeter",
+        "value": "/91,44",
+        "convert": "yard"
+    },{
+        "unit": "centemeter",
+        "value": "/2,54",
+        "convert": "inch"
+    },{
+        "unit": "centemeter",
+        "value": "/30,48",
+        "convert": "feet"
+        
+
+
+    },{
+        "unit": "feet",
+        "value": "*304.8",
+        "convert": "mm"
+    },{
+        "unit": "feet",
+        "value": "*34,48",
+        "convert": "centemeter"
+    },{
+        "unit": "feet",
+        "value": "*3,281",
+        "convert": "meter"
+    },{
+        "unit": "feet",
+        "value": "/3281",
+        "convert": "kilometer"
+    },{
+        "unit": "feet",
+        "value": "/3",
+        "convert": "yard"
+    },{
+        "unit": "feet",
+        "value": "*12",
+        "convert": "inch"
+    },{
+        "unit": "feet",
+        "value": "*1",
+        "convert": "feet"
+        
+
+
+    },{
+        "unit": "inch",
+        "value": "*1",
+        "convert": "inch"
+    },{
+        "unit": "inch",
+        "value": "*25,4",
+        "convert": "mm"
+    },{
+        "unit": "inch",
+        "value": "*2,54",
+        "convert": "centemeter"
+    },{
+        "unit": "inch",
+        "value": "/39370",
+        "convert": "kilometer"
+    },{
+        "unit": "inch",
+        "value": "/36",
+        "convert": "yard"
+    },{
+        "unit": "inch",
+        "value": "/12",
+        "convert": "feet"
+    },{
+        "unit": "inch",
+        "value": "39.37",
+        "convert": "meter"
+        
+
+
+    },{
+        "unit": "meter",
+        "value": "*1",
+        "convert": "meter"
+    },{
+        "unit": "meter",
+        "value": "*1000",
+        "convert": "mm"
+    },{
+        "unit": "meter",
+        "value": "*100",
+        "convert": "centemeter"
+    },{
+        "unit": "meter",
+        "value": "/10000",
+        "convert": "kilometer"
+    },{
+        "unit": "meter",
+        "value": "*1,094",
+        "convert": "yard"
+    },{
+        "unit": "meter",
+        "value": "*39,37",
+        "convert": "inch"
+    },{
+        "unit": "meter",
+        "value": "*3,281",
+        "convert": "feet"
     }]
 }
