@@ -10,36 +10,44 @@
 </head>
 <body>
 
-    <div class="converter-body">
+    <div class="container">
+        <div class="converter-body">
 
-        <h1 class="converter-title">Converter SysGears</h1>
+            <h1 class="converter-title">Converter SysGears</h1>
+             
 
-        <input type="text" placeholder="Input" id="input">
-        <span>=</span>
-        <input type="text" placeholder="Result" id="result">
-
-        <select  id="inputType">
-        </select>
-
-        <select  id="resultType">
-        </select>
-
-        <button id="Download">Download Json</button>
-       
+            <div class="form-group">
+                <div class="form-group-input">
+                    <input type="text" placeholder="Input" id="input">
+                    <span>=</span>
+                    <input type="text" placeholder="Result" id="result">
+                </div>
+                <div class="form-group-select">
+                    <select  id="inputType">
+                    </select>
+      
+                   <select  id="resultType">
+                   </select>
+                 </div>             
+           </div>
+            
+           <div class="group-button">
+                <p>Form result JSON:</p>
+                <button id="Download">Download</button>
+           </div>
+            <hr>
+            <div>Convert from json file:</div>
+            <div>From:<span id="unitJson"></span></div>
+            <div>Value:<span id="valueJson"></span></div>
+            <div>To:<span id="convertJson"></span></div>
+            <div>Result:<span id="resultJson"></span></div> 
         
-        <div>Convert json file</div>
-        <div>From:<span id="unitJson"></span></div>
-        <div>Value:<span id="valueJson"></span></div>
-        <div>To:<span id="convertJson"></span></div>
-        <div>Result:<span id="resultJson"></span></div> 
     
+        </div>
+         
+        <p>Other tasks in the console</p>
 
     </div>
-
-    
-
-
-
 
     <script src="/js/main.js" ></script>
     

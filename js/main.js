@@ -1,3 +1,7 @@
+
+
+//
+
 function readJson () {
     fetch('new_value.json')
     .then(response => {
@@ -26,16 +30,16 @@ async function newLogic () {
     if (!response.ok) {
 		throw new Error(`HTTP error! status: ${response.status}`);
 	}
-	const data = await response.json();
-    return data;
+	const DATA = await response.json();
+    return DATA;
     
 }
-let dataJson;
+let DATAJson;
 
-newLogic().then(data => {
+newLogic().then(DATA => {
     let ArrayOptions = ["centimeter","feet","meter", "inch"];
 
-    const unique = data.logic.filter(element => {
+    const unique = DATA.logic.filter(element => {
         const isDuplicate = ArrayOptions.includes(element.unit);
         if (!isDuplicate) {
             ArrayOptions.push(element.unit);
@@ -54,7 +58,7 @@ newLogic().then(data => {
        new Option(option, option)
      )
     });
-    dataJson = data;
+    DATAJson = DATA;
 });
 
 
@@ -66,7 +70,7 @@ let inputType = document.getElementById('inputType');
 let resultType = document.getElementById('resultType');
 
 
-// add listener
+
 input.addEventListener("keyup", function(){ myResult(inputType.value, input.value,resultType.value )});
 inputType.addEventListener("change", function(){ myResult(inputType.value, input.value, resultType.value)});
 resultType.addEventListener("change", function(){ myResult(inputType.value, input.value, resultType.value)});
@@ -145,10 +149,10 @@ function Calc(unit, value, convert) {
             
         }
         
-        for(let i = 0; i<=dataJson.logic.length; i++){
+        for(let i = 0; i<=DATAJson.logic.length; i++){
         
-            if(unit === dataJson.logic[i].unit && convert === dataJson.logic[i].convert){
-                return eval(Number(value) + dataJson.logic[i].value)
+            if(unit === DATAJson.logic[i].unit && convert === DATAJson.logic[i].convert){
+                return eval(Number(value) + DATAJson.logic[i].value)
             }
         }
 }
@@ -165,9 +169,10 @@ function downloadJson(){
     download(JSON.stringify({value: input.value,convertFrom: inputType.value, convertTo: resultType.value, result: result.value}), "result.json", "text/plain");
 }
 
+console.log("Task 2")
 
 
-myJson={"data": [{"user": "mike@mail.com", "rating": 20, "disabled": false},
+myJson={"DATA": [{"user": "mike@mail.com", "rating": 20, "disabled": false},
 {"user": "greg@mail.com", "rating": 14, "disabled": false},
 {"user": "john@mail.com", "rating": 25, "disabled": true}],
 "condition": {"include": [{"disabled": true}], "sort_by": ["rating"]}}
@@ -175,19 +180,70 @@ myJson={"data": [{"user": "mike@mail.com", "rating": 20, "disabled": false},
 let filterBy = Object.keys(myJson.condition)[0]
 
 
-
 function sort (filtrBy, filter, sortBy) {
         let filterValue = Object.keys(myJson.condition[filtrBy][0])[0]
 
 
     if(filtrBy === 'exclude') {
-        return myJson.data.filter((e) => e[filterValue] !== filter[0][filterValue] ).sort((a, b) => {return a[sortBy[0]] - b[sortBy[0]];});
+        return myJson.DATA.filter((e) => e[filterValue] !== filter[0][filterValue] ).sort((a, b) => {return a[sortBy[0]] - b[sortBy[0]];});
         
     } else {
-        return myJson.data.filter((e) => e[filterValue] === filter[0][filterValue] ).sort((a, b) => {return a[sortBy[0]] - b[sortBy[0]];});
+        return myJson.DATA.filter((e) => e[filterValue] === filter[0][filterValue] ).sort((a, b) => {return a[sortBy[0]] - b[sortBy[0]];});
         
     }
 
 }
  let result2 =  sort(filterBy, myJson.condition[filterBy], myJson.condition.sort_by)
  console.log(result2)
+
+
+ console.log('Task 4')
+
+
+const questionList = [
+    {"What is your marital status?": ["Single", "Married"]},
+    {"Are you planning on getting married next year?": ["Yes", "No"]},
+    {"How long have you been married?": ["Less than a year", "More than a year"]},
+    {"Have you celebrated your one year anniversary?": ["Yes", "No"]},
+];
+const answerMap = {
+    0: [1, 2],
+    1: [false, false],
+    2: [false, 3],
+    3: [false, false]};
+
+function getAnswer(answerMap, questionList) {
+    const paths = { number: 0, list: [] };
+
+    function generatePath(path, questionIndex) {
+
+        if (answerMap[questionIndex] === undefined) {
+            paths.list.push(path);
+            paths.number++;
+            return;
+        }
+        for (let i = 0; i < answerMap[questionIndex].length; i++) {
+            const newPath = [...path];
+            
+            for (let key  in questionList[questionIndex]) {
+                newPath.push({[key]: questionList[questionIndex][key][i]});
+            }
+            
+            generatePath(newPath, answerMap[questionIndex][i]);
+        }
+    }
+    generatePath([], 0);
+    return paths;
+}
+
+console.log(getAnswer(answerMap, questionList));
+
+
+
+
+
+
+
+
+
+
